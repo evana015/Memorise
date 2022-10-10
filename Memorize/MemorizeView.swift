@@ -16,7 +16,7 @@ struct MemorizeView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MemorizeView_Previews: PreviewProvider {
     static var previews: some View {
         MemorizeView()
     }
