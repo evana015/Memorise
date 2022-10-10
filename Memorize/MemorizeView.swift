@@ -26,7 +26,8 @@ struct CardView: View {
         ZStack {   // ZStack : Stacking outward towards the user
             RoundedRectangle(cornerRadius: 20)
                 .stroke(lineWidth: 3)
-            Text("Hello")
+            Text("✈️")
+                .font(.largeTitle)
         }
     }
 }
