@@ -35,5 +35,8 @@ struct CardView: View {
 struct MemorizeView_Previews: PreviewProvider {
     static var previews: some View {
         MemorizeView()
+            .preferredColorScheme(.dark)    // Dark mode
+        MemorizeView()
+            .preferredColorScheme(.light)
     }
 }
