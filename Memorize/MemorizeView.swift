@@ -24,8 +24,10 @@ struct MemorizeView: View {
 struct CardView: View {
     var body: some View {
         ZStack {   // ZStack : Stacking outward towards the user
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 20)  // Outer rectangle
                 .stroke(lineWidth: 3)
+            RoundedRectangle(cornerRadius: 20)  // Inner coloured rectangle
+                .fill(.white)
             Text("✈️")
                 .font(.largeTitle)
         }
