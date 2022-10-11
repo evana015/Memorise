@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct MemorizeView: View {
-    var emojis = ["🚌", "🛻", "🚝", "🚔"]
+    var emojis = ["🚌", "🛻", "🚝", "🚔", "🛴", "🚲", "🏍", "🛺", "🚕"]
+    var emojiCount = 3
     var body: some View {
         HStack {
-            ForEach(emojis, id:\.self, content: { emoji in
+            ForEach(emojis[0..<emojiCount], id:\.self, content: { emoji in
                 CardView(content: emoji)
             })
         }
