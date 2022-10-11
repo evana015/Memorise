@@ -9,12 +9,44 @@ import SwiftUI
 
 struct MemorizeView: View {
     var emojis = ["🚌", "🛻", "🚝", "🚔", "🛴", "🚲", "🏍", "🛺", "🚕"]
-    var emojiCount = 3
+    
+    @State var emojiCount = 3
+    
+    var remove: some View {
+        Button(action: {
+            emojiCount -= 1
+        }, label: {
+            VStack {
+                Image(systemName: "minus.square")   // SystemName found on SF-symbols
+            }
+        })
+    }
+    
+    var add: some View {
+        Button(action: {
+            emojiCount += 1
+        }, label: {
+            VStack {
+                Image(systemName: "plus.square")
+            }
+        })
+    }
+    
     var body: some View {
-        HStack {
-            ForEach(emojis[0..<emojiCount], id:\.self, content: { emoji in
-                CardView(content: emoji)
-            })
+        VStack {
+            HStack {
+                ForEach(emojis[0..<emojiCount], id:\.self, content: { emoji in
+                    CardView(content: emoji)
+                })
+            }
+            Spacer()
+            HStack {
+                remove
+                Spacer()
+                add
+            }
+            .font(.largeTitle)
+            .padding(.horizontal)
         }
         // Applies to all inside the parent view
         .padding(.horizontal)
