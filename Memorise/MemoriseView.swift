@@ -1,23 +1,23 @@
 //
-//  ContentView.swift
-//  Memorize
+//  MemoriseView.swift
+//  Memorise
 //
 //  Created by Evans, Adam on 10/10/2022.
 //
 
 import SwiftUI
 
-struct MemorizeView: View {
+struct MemoriseView: View {
     @State var emojis = ["🚌", "🛻", "🚝", "🚔", "🛴", "🚲", "🏍", "🛺", "🚕", "✈️", "🚀", "🛸", "🚁", "🛶", "⛴", "⛵️", "🛰", "🚂", "🚋", "🦼"]
     
     @State var emojiCount = 5
     
-    var title: some View {
+    var Title: some View {
         ZStack {
             let titleBox = RoundedRectangle(cornerRadius: 25)
             titleBox.foregroundColor(.white)
             titleBox.strokeBorder(lineWidth: 3).foregroundColor(.red)
-            Text("Memorize!")
+            Text("Memorise!")
                 .font(.title)
                 .fontWeight(.black)
                 .foregroundColor(Color.red)
@@ -25,7 +25,7 @@ struct MemorizeView: View {
         .frame(height: 34.0)
     }
     
-    var cardGrid: some View {
+    var CardGrid: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
                 ForEach(emojis[0..<emojiCount], id:\.self, content: { emoji in
@@ -36,7 +36,7 @@ struct MemorizeView: View {
         .foregroundColor(.red)
     }
     
-    var animalTheme: some View {
+    var AnimalTheme: some View {
         Button {
             emojis = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁", "🐷", "🐸", "🐵", "🐥", "🐣", "🦄"].shuffled()
             emojiCount = 5
@@ -45,7 +45,7 @@ struct MemorizeView: View {
         }
     }
     
-    var faceTheme: some View {
+    var FaceTheme: some View {
         Button {
             emojis = ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🥲", "☺️", "😊", "😇", "🙂", "🙃", "😉", "😛", "😝", "😜", "🤮"].shuffled()
             emojiCount = 5
@@ -54,7 +54,7 @@ struct MemorizeView: View {
         }
     }
     
-    var vehicleTheme: some View {
+    var VehicleTheme: some View {
         Button {
             emojis = ["🚌", "🛻", "🚝", "🚓", "🛴", "🚲", "🏍", "🛺", "🚑", "✈️", "🚀", "🛸", "🚁", "🛶", "⛴", "🚒", "🛰", "🚂", "🚋", "🦼"].shuffled()
             emojiCount = 5
@@ -63,34 +63,9 @@ struct MemorizeView: View {
         }
     }
     
-    var remove: some View {
-        Button {
-            if emojiCount > 1 {
-                emojiCount -= 1
-            }
-        } label: {
-            VStack {
-                Image(systemName: "minus.square")   // SystemName found on SF-symbols
-            }
-        }
-    }
-    
-    var add: some View {
-        Button {
-            if emojiCount < emojis.count {
-                emojiCount += 1
-            }
-        } label: {
-            VStack {
-                Image(systemName: "plus.square")
-            }
-        }
-    }
-    
-    var bottomControls: some View {
+    var BottomControls: some View {
         HStack {
             let label = RoundedRectangle(cornerRadius: 25)
-            remove
             VStack{
                 ZStack {
                     label.foregroundColor(.white)
@@ -101,15 +76,14 @@ struct MemorizeView: View {
                 .foregroundColor(.red)
                 .frame(height: 0.0)
                 HStack{
-                    vehicleTheme
+                    VehicleTheme
                     Spacer()
-                    faceTheme
+                    FaceTheme
                     Spacer()
-                    animalTheme
+                    AnimalTheme
                 }
             }
             .padding([.leading, .bottom, .trailing])
-            add
         }
         .font(.largeTitle)
         .padding(.horizontal)
@@ -117,9 +91,9 @@ struct MemorizeView: View {
     
     var body: some View {
         VStack {
-            title
-            cardGrid
-            bottomControls
+            Title
+            CardGrid
+            BottomControls
         }
         // Applies to all inside the parent view
         .padding(.horizontal)
@@ -147,11 +121,11 @@ struct CardView: View {
     }
 }
 
-struct MemorizeView_Previews: PreviewProvider {
+struct MemoriseView_Previews: PreviewProvider {
     static var previews: some View {
-        MemorizeView()
+        MemoriseView()
             .preferredColorScheme(.dark)    // Dark mode
-        MemorizeView()
+        MemoriseView()
             .preferredColorScheme(.light)
     }
 }

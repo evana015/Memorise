@@ -1,6 +1,6 @@
 //
-//  MemorizeApp.swift
-//  Memorize
+//  MemoriseApp.swift
+//  Memorise
 //
 //  Created by Evans, Adam on 10/10/2022.
 //
@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct MemorizeApp: App {
+struct MemoriseApp: App {
     var body: some Scene {
         WindowGroup {
-            MemorizeView()
+            MemoriseView()
         }
     }
 }
