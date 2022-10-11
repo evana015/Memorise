@@ -22,14 +22,21 @@ struct MemorizeView: View {
 }
 
 struct CardView: View {
+    @State var isFaceUp: Bool = true    // @State turn Bool into pointer to external mutable Bool, needed as Views are immutable
+    
     var body: some View {
         ZStack {   // ZStack : Stacking outward towards the user
-            RoundedRectangle(cornerRadius: 20)  // Outer rectangle
-                .stroke(lineWidth: 3)
-            RoundedRectangle(cornerRadius: 20)  // Inner coloured rectangle
-                .fill(.white)
-            Text("✈️")
-                .font(.largeTitle)
+            let shape = RoundedRectangle(cornerRadius: 20)
+            if isFaceUp {
+                shape.stroke(lineWidth: 3)  // Outer rectangle
+                shape.fill(.white) // Inner coloured rectangle
+                Text("✈️").font(.largeTitle)
+            } else {
+                shape.fill()
+            }
+        }
+        .onTapGesture {
+            isFaceUp = !isFaceUp
         }
     }
 }
