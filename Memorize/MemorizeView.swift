@@ -13,27 +13,27 @@ struct MemorizeView: View {
     @State var emojiCount = 3
     
     var remove: some View {
-        Button(action: {
+        Button {
             if emojiCount > 1 {
                 emojiCount -= 1
             }
-        }, label: {
+        } label: {
             VStack {
                 Image(systemName: "minus.square")   // SystemName found on SF-symbols
             }
-        })
+        }
     }
     
     var add: some View {
-        Button(action: {
+        Button {
             if emojiCount < emojis.count {
                 emojiCount += 1
             }
-        }, label: {
+        } label: {
             VStack {
                 Image(systemName: "plus.square")
             }
-        })
+        }
     }
     
     var body: some View {
