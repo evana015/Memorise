@@ -63,34 +63,9 @@ struct MemorizeView: View {
         }
     }
     
-    var remove: some View {
-        Button {
-            if emojiCount > 1 {
-                emojiCount -= 1
-            }
-        } label: {
-            VStack {
-                Image(systemName: "minus.square")   // SystemName found on SF-symbols
-            }
-        }
-    }
-    
-    var add: some View {
-        Button {
-            if emojiCount < emojis.count {
-                emojiCount += 1
-            }
-        } label: {
-            VStack {
-                Image(systemName: "plus.square")
-            }
-        }
-    }
-    
     var bottomControls: some View {
         HStack {
             let label = RoundedRectangle(cornerRadius: 25)
-            remove
             VStack{
                 ZStack {
                     label.foregroundColor(.white)
@@ -109,7 +84,6 @@ struct MemorizeView: View {
                 }
             }
             .padding([.leading, .bottom, .trailing])
-            add
         }
         .font(.largeTitle)
         .padding(.horizontal)
