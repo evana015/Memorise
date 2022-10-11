@@ -37,7 +37,17 @@ struct MemorizeView: View {
     }
     
     var body: some View {
+        let titleBox = RoundedRectangle(cornerRadius: 25)
         VStack {
+            ZStack{
+                titleBox.foregroundColor(.white)
+                titleBox.strokeBorder(lineWidth: 3).foregroundColor(.red)
+                Text("Memorize!")
+                    .font(.title)
+                    .fontWeight(.black)
+                    .foregroundColor(Color.red)
+            }
+            .frame(height: 34.0)
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
                     ForEach(emojis[0..<emojiCount], id:\.self, content: { emoji in
