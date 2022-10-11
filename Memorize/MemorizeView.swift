@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MemorizeView.swift
 //  Memorize
 //
 //  Created by Evans, Adam on 10/10/2022.
@@ -12,7 +12,7 @@ struct MemorizeView: View {
     
     @State var emojiCount = 5
     
-    var title: some View {
+    var Title: some View {
         ZStack {
             let titleBox = RoundedRectangle(cornerRadius: 25)
             titleBox.foregroundColor(.white)
@@ -25,7 +25,7 @@ struct MemorizeView: View {
         .frame(height: 34.0)
     }
     
-    var cardGrid: some View {
+    var CardGrid: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
                 ForEach(emojis[0..<emojiCount], id:\.self, content: { emoji in
@@ -36,7 +36,7 @@ struct MemorizeView: View {
         .foregroundColor(.red)
     }
     
-    var animalTheme: some View {
+    var AnimalTheme: some View {
         Button {
             emojis = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁", "🐷", "🐸", "🐵", "🐥", "🐣", "🦄"].shuffled()
             emojiCount = 5
@@ -45,7 +45,7 @@ struct MemorizeView: View {
         }
     }
     
-    var faceTheme: some View {
+    var FaceTheme: some View {
         Button {
             emojis = ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🥲", "☺️", "😊", "😇", "🙂", "🙃", "😉", "😛", "😝", "😜", "🤮"].shuffled()
             emojiCount = 5
@@ -54,7 +54,7 @@ struct MemorizeView: View {
         }
     }
     
-    var vehicleTheme: some View {
+    var VehicleTheme: some View {
         Button {
             emojis = ["🚌", "🛻", "🚝", "🚓", "🛴", "🚲", "🏍", "🛺", "🚑", "✈️", "🚀", "🛸", "🚁", "🛶", "⛴", "🚒", "🛰", "🚂", "🚋", "🦼"].shuffled()
             emojiCount = 5
@@ -63,7 +63,7 @@ struct MemorizeView: View {
         }
     }
     
-    var bottomControls: some View {
+    var BottomControls: some View {
         HStack {
             let label = RoundedRectangle(cornerRadius: 25)
             VStack{
@@ -76,11 +76,11 @@ struct MemorizeView: View {
                 .foregroundColor(.red)
                 .frame(height: 0.0)
                 HStack{
-                    vehicleTheme
+                    VehicleTheme
                     Spacer()
-                    faceTheme
+                    FaceTheme
                     Spacer()
-                    animalTheme
+                    AnimalTheme
                 }
             }
             .padding([.leading, .bottom, .trailing])
@@ -91,9 +91,9 @@ struct MemorizeView: View {
     
     var body: some View {
         VStack {
-            title
-            cardGrid
-            bottomControls
+            Title
+            CardGrid
+            BottomControls
         }
         // Applies to all inside the parent view
         .padding(.horizontal)
