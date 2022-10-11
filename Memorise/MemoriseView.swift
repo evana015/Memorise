@@ -1,13 +1,13 @@
 //
-//  MemorizeView.swift
-//  Memorize
+//  MemoriseView.swift
+//  Memorise
 //
 //  Created by Evans, Adam on 10/10/2022.
 //
 
 import SwiftUI
 
-struct MemorizeView: View {
+struct MemoriseView: View {
     @State var emojis = ["🚌", "🛻", "🚝", "🚔", "🛴", "🚲", "🏍", "🛺", "🚕", "✈️", "🚀", "🛸", "🚁", "🛶", "⛴", "⛵️", "🛰", "🚂", "🚋", "🦼"]
     
     @State var emojiCount = 5
@@ -17,7 +17,7 @@ struct MemorizeView: View {
             let titleBox = RoundedRectangle(cornerRadius: 25)
             titleBox.foregroundColor(.white)
             titleBox.strokeBorder(lineWidth: 3).foregroundColor(.red)
-            Text("Memorize!")
+            Text("Memorise!")
                 .font(.title)
                 .fontWeight(.black)
                 .foregroundColor(Color.red)
@@ -121,11 +121,11 @@ struct CardView: View {
     }
 }
 
-struct MemorizeView_Previews: PreviewProvider {
+struct MemoriseView_Previews: PreviewProvider {
     static var previews: some View {
-        MemorizeView()
+        MemoriseView()
             .preferredColorScheme(.dark)    // Dark mode
-        MemorizeView()
+        MemoriseView()
             .preferredColorScheme(.light)
     }
 }

@@ -1,6 +1,6 @@
 //
 //  EmojiMemoryGame.swift
-//  Memorize
+//  Memorise
 //
 //  Created by Evans, Adam on 11/10/2022.
 //
