@@ -12,6 +12,15 @@ struct MemorizeView: View {
     
     @State var emojiCount = 5
     
+    var animalTheme: some View {
+        Button {
+            emojis = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁", "🐷", "🐸", "🐵", "🐥", "🐣", "🦄"].shuffled()
+            emojiCount = 5
+        } label: {
+            Text("🐼")
+        }
+    }
+    
     var faceTheme: some View {
         Button {
             emojis = ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🥲", "☺️", "😊", "😇", "🙂", "🙃", "😉", "😛", "😝", "😜", "🤮"].shuffled()
@@ -27,15 +36,6 @@ struct MemorizeView: View {
             emojiCount = 5
         } label: {
             Text("🚒")
-        }
-    }
-    
-    var animalTheme: some View {
-        Button {
-            emojis = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁", "🐷", "🐸", "🐵", "🐥", "🐣", "🦄"].shuffled()
-            emojiCount = 5
-        } label: {
-            Text("🐼")
         }
     }
     
