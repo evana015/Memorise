@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MemorizeView: View {
-    var emojis = ["🚌", "🛻", "🚝", "🚔", "🛴", "🚲", "🏍", "🛺", "🚕"]
+    var emojis = ["🚌", "🛻", "🚝", "🚔", "🛴", "🚲", "🏍", "🛺", "🚕", "✈️", "🚀", "🛸", "🚁", "🛶", "⛴", "⛵️", "🛰"]
     
     @State var emojiCount = 3
     
@@ -38,11 +38,14 @@ struct MemorizeView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                ForEach(emojis[0..<emojiCount], id:\.self, content: { emoji in
-                    CardView(content: emoji)
-                })
+            ScrollView {
+                LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
+                    ForEach(emojis[0..<emojiCount], id:\.self, content: { emoji in
+                        CardView(content: emoji).aspectRatio(2/3, contentMode: .fit)
+                    })
+                }
             }
+            .foregroundColor(.red)
             Spacer()
             HStack {
                 remove
@@ -54,7 +57,6 @@ struct MemorizeView: View {
         }
         // Applies to all inside the parent view
         .padding(.horizontal)
-        .foregroundColor(.red)
     }
 }
 
