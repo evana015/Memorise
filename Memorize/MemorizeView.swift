@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct MemorizeView: View {
+    var emojis = ["🚌", "🛻", "🚝", "🚔"]
     var body: some View {
         HStack {
-            CardView()
-            CardView()
-            CardView()
-            CardView()
+            ForEach(emojis, id:\.self, content: { emoji in
+                CardView(content: emoji)
+            })
         }
         // Applies to all inside the parent view
         .padding(.horizontal)
@@ -22,6 +22,7 @@ struct MemorizeView: View {
 }
 
 struct CardView: View {
+    var content: String
     @State var isFaceUp: Bool = true    // @State turn Bool into pointer to external mutable Bool, needed as Views are immutable
     
     var body: some View {
@@ -30,7 +31,7 @@ struct CardView: View {
             if isFaceUp {
                 shape.stroke(lineWidth: 3)  // Outer rectangle
                 shape.fill(.white) // Inner coloured rectangle
-                Text("✈️").font(.largeTitle)
+                Text(content).font(.largeTitle)
             } else {
                 shape.fill()
             }
