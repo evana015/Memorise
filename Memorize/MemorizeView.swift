@@ -68,8 +68,8 @@ struct CardView: View {
         ZStack {   // ZStack : Stacking outward towards the user
             let shape = RoundedRectangle(cornerRadius: 20)
             if isFaceUp {
-                shape.stroke(lineWidth: 3)  // Outer rectangle
                 shape.fill(.white) // Inner coloured rectangle
+                shape.strokeBorder(lineWidth: 3)  // Outer rectangle
                 Text(content).font(.largeTitle)
             } else {
                 shape.fill()
