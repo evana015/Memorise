@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MemoriseView: View {
-    let viewModel: EmojiMemoryGame
+    // @ObservedObject when this changes rebuild
+    @ObservedObject var viewModel: EmojiMemoryGame
     
     var Title: some View {
         ZStack {
