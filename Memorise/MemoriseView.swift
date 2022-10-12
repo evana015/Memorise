@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct MemoriseView: View {
-    @State var emojis = ["🚌", "🛻", "🚝", "🚔", "🛴", "🚲", "🏍", "🛺", "🚕", "✈️", "🚀", "🛸", "🚁", "🛶", "⛴", "⛵️", "🛰", "🚂", "🚋", "🦼"]
-    
-    @State var emojiCount = 5
+    // @ObservedObject when this changes rebuild
+    @ObservedObject var viewModel: EmojiMemoryGame
     
     var Title: some View {
         ZStack {
@@ -28,72 +27,21 @@ struct MemoriseView: View {
     var CardGrid: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
-                ForEach(emojis[0..<emojiCount], id:\.self, content: { emoji in
-                    CardView(content: emoji).aspectRatio(2/3, contentMode: .fit)
-                })
+                ForEach(viewModel.cards) { card in
+                    CardView(card: card).aspectRatio(2/3, contentMode: .fit)
+                        .onTapGesture {
+                            viewModel.choose(card)
+                        }
+                }
             }
         }
         .foregroundColor(.red)
-    }
-    
-    var AnimalTheme: some View {
-        Button {
-            emojis = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐻‍❄️", "🐨", "🐯", "🦁", "🐷", "🐸", "🐵", "🐥", "🐣", "🦄"].shuffled()
-            emojiCount = 5
-        } label: {
-            Text("🐼")
-        }
-    }
-    
-    var FaceTheme: some View {
-        Button {
-            emojis = ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🥲", "☺️", "😊", "😇", "🙂", "🙃", "😉", "😛", "😝", "😜", "🤮"].shuffled()
-            emojiCount = 5
-        } label: {
-            Text("😀")
-        }
-    }
-    
-    var VehicleTheme: some View {
-        Button {
-            emojis = ["🚌", "🛻", "🚝", "🚓", "🛴", "🚲", "🏍", "🛺", "🚑", "✈️", "🚀", "🛸", "🚁", "🛶", "⛴", "🚒", "🛰", "🚂", "🚋", "🦼"].shuffled()
-            emojiCount = 5
-        } label: {
-            Text("🚒")
-        }
-    }
-    
-    var BottomControls: some View {
-        HStack {
-            let label = RoundedRectangle(cornerRadius: 25)
-            VStack{
-                ZStack {
-                    label.foregroundColor(.white)
-                    label.strokeBorder(lineWidth: 2)
-                    Text("Pick A Theme!")
-                        .font(.footnote)
-                }
-                .foregroundColor(.red)
-                .frame(height: 0.0)
-                HStack{
-                    VehicleTheme
-                    Spacer()
-                    FaceTheme
-                    Spacer()
-                    AnimalTheme
-                }
-            }
-            .padding([.leading, .bottom, .trailing])
-        }
-        .font(.largeTitle)
-        .padding(.horizontal)
     }
     
     var body: some View {
         VStack {
             Title
             CardGrid
-            BottomControls
         }
         // Applies to all inside the parent view
         .padding(.horizontal)
@@ -101,31 +49,30 @@ struct MemoriseView: View {
 }
 
 struct CardView: View {
-    var content: String
-    @State var isFaceUp: Bool = true    // @State turn Bool into pointer to external mutable Bool, needed as Views are immutable
+    let card: MemoryGame<String>.Card
     
     var body: some View {
         ZStack {   // ZStack : Stacking outward towards the user
             let shape = RoundedRectangle(cornerRadius: 20)
-            if isFaceUp {
+            if card.isFaceUp {
                 shape.fill(.white) // Inner coloured rectangle
                 shape.strokeBorder(lineWidth: 3)  // Outer rectangle
-                Text(content).font(.largeTitle)
+                Text(card.content).font(.largeTitle)
+            } else if card.isMathced {
+                shape.opacity(0)
             } else {
                 shape.fill()
             }
-        }
-        .onTapGesture {
-            isFaceUp = !isFaceUp
         }
     }
 }
 
 struct MemoriseView_Previews: PreviewProvider {
     static var previews: some View {
-        MemoriseView()
+        let game = EmojiMemoryGame()
+        MemoriseView(viewModel: game)
             .preferredColorScheme(.dark)    // Dark mode
-        MemoriseView()
+        MemoriseView(viewModel: game)
             .preferredColorScheme(.light)
     }
 }
