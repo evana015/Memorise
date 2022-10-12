@@ -7,11 +7,28 @@
 
 import Foundation
 
-struct MemoryGame<CardContent>{
+struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: Array<Card>
     
+    private var indexOfFaceUpCard: Int?
+    
     mutating func choose(_ card: Card) {
-        if let chosenIndex = cards.firstIndex(where: {$0.id == card.id}) {
+        if let chosenIndex = cards.firstIndex(where: {$0.id == card.id}),
+           !cards[chosenIndex].isFaceUp,
+           !cards[chosenIndex].isMathced
+        {
+            if let potentialMatchIndex = indexOfFaceUpCard {
+                if cards[chosenIndex].content == cards[potentialMatchIndex].content {
+                    cards[chosenIndex].isMathced = true
+                    cards[potentialMatchIndex].isMathced = true
+                }
+                indexOfFaceUpCard = nil
+            } else {
+                for index in cards.indices {
+                    cards[index].isFaceUp = false
+                }
+                indexOfFaceUpCard = chosenIndex
+            }
             cards[chosenIndex].isFaceUp.toggle()
         }
         print("\(cards)")   // same as %s in python
